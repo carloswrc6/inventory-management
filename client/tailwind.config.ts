@@ -1,11 +1,8 @@
 import type { Config } from "tailwindcss";
 import { createThemes } from "tw-colors";
 import colors from "tailwindcss/colors";
-import { dark, light } from "@mui/material/styles/createPalette";
 
 const baseColors = [
-  "black",
-  "white",
   "gray",
   "red",
   "yellow",
@@ -45,11 +42,18 @@ const lightTheme = generateThemeObject(colors, shadeMapping);
 const darkTheme = generateThemeObject(colors, shadeMapping, true);
 
 const themes = {
-  light: { ...lightTheme, white: "#ffffff" },
-  dark: { ...darkTheme, white: colors.gray[950], black: colors.gray[50] },
+  light: {
+    ...lightTheme,
+    white: "#ffffff",
+  },
+  dark: {
+    ...darkTheme,
+    white: colors.gray["950"],
+    black: colors.gray["50"],
+  },
 };
 
-export default {
+const config: Config = {
   darkMode: "class",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -58,12 +62,14 @@ export default {
   ],
   theme: {
     extend: {
-      colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+      backgroundImage: {
+        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "gradient-conic":
+          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
     },
   },
   plugins: [createThemes(themes)],
-} satisfies Config;
+};
 
+export default config;
