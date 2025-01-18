@@ -1,24 +1,25 @@
-"use client";
+'use client'
 
-import { useAppDispatch, useAppSelector } from "@/app/redux";
-import { setIsDarkMode, setIsSidebarCollapsed } from "@/state";
-import { Bell, Menu, Moon, Settings, Sun } from "lucide-react";
-import Link from "next/link";
+import { useAppDispatch, useAppSelector } from '@/app/redux'
+import { setIsDarkMode, setIsSidebarCollapsed } from '@/state'
+import { Bell, Menu, Moon, Settings, Sun } from 'lucide-react'
+import Link from 'next/link'
+import Image from 'next/image';
 
 const Navbar = () => {
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
   const isSidebarCollapsed = useAppSelector(
-    (state) => state.global.isSidebarCollapsed
-  );
-  const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
+    (state) => state.global.isSidebarCollapsed,
+  )
+  const isDarkMode = useAppSelector((state) => state.global.isDarkMode)
 
   const toggleSidebar = () => {
-    dispatch(setIsSidebarCollapsed(!isSidebarCollapsed));
-  };
+    dispatch(setIsSidebarCollapsed(!isSidebarCollapsed))
+  }
 
   const toggleDarkMode = () => {
-    dispatch(setIsDarkMode(!isDarkMode));
-  };
+    dispatch(setIsDarkMode(!isDarkMode))
+  }
 
   return (
     <div className="flex justify-between items-center w-full mb-7">
@@ -61,7 +62,13 @@ const Navbar = () => {
           </div>
           <hr className="w-0 h-7 border boder-solid boder-l border-gray-300 mx-3" />
           <div className="flex items-center gap-3 cursor-pointer">
-            <div className="w-9 h-9">image</div>
+            <Image
+              src="https://s3-inventory-management-qazedctgbvxcrewdsf-iopkjlmnhbnvgbh.s3.us-east-1.amazonaws.com/profile.jpg"
+              alt="profile"
+              width={50}
+              height={50}
+              className="rounded-full h-full object-cover"
+            ></Image>
             <span className="font-semibold">Name User</span>
           </div>
           <Link href="/settings">
@@ -70,7 +77,7 @@ const Navbar = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
